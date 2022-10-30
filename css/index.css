@@ -13,6 +13,7 @@ html {
   /* 1rem = 16px */
   font-size: 16px;
   scroll-behavior: smooth;
+  background: #fff;
 }
 
 body {
@@ -20,6 +21,25 @@ body {
   color: #212529;
   background-color: white;
   letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 a.navbar-brand {
+  font-size: 3.5rem;
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: 300;
+  letter-spacing: 2px;
 }
 
 

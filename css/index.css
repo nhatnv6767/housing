@@ -92,5 +92,39 @@ nav {
   /*padding: 10px 15px;*/
 }
 
+/*CAROUSEL*/
 
+.carousel .carousel__content .img-one,
+.carousel .carousel__content .img-two,
+.carousel .carousel__content .img-three,
+.carousel .carousel__content .img-four {
+  min-height: 800px;
+}
 
+.carousel .carousel__content .img-one {
+  background: url(../img/b1.jpg) no-repeat center;
+}
+
+.carousel .carousel__content .img-two {
+  background: url(../img/b2.jpg) no-repeat center;
+}
+
+.carousel .carousel__content .img-three {
+  background: url(../img/b3.jpg) no-repeat center;
+}
+
+.carousel .carousel__content .img-four {
+  background: url(../img/b4.jpg) no-repeat center;
+}
+
+.carousel .carousel__content #slider {
+  margin: 0 auto;
+}
+
+.carousel__content {
+  font-size: 1.125rem;
+  margin: 0 auto 3.125rem;
+  max-width: 540px;
+  padding: 10px 0;
+  text-align: center;
+}

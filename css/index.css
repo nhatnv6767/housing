@@ -128,3 +128,8 @@ nav {
   padding: 10px 0;
   text-align: center;
 }
+
+.swiper {
+  width: 600px;
+  height: 300px;
+}

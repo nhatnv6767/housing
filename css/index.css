@@ -1,0 +1,25 @@
+/* GLOBAL */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-size: 18px; */
+  /* 1rem = 18px */
+  /* không khai báo fs */
+  /* 1rem = 16px */
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: #212529;
+  background-color: white;
+  letter-spacing: 1px;
+}
+
+

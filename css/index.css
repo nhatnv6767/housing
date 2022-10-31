@@ -46,6 +46,10 @@ ul {
   padding: 5rem 0;
 }
 
+.section__bottom {
+  padding-bottom: 5rem;
+}
+
 /*NAVIGATION BAR - HEADER*/
 
 h1 a.navbar-brand {
@@ -335,5 +339,94 @@ button.close {
   font-size: 2.7rem;
   color: #a0260f;
   outline: none;
+}
+
+
+/*GET-MORE*/
+.getMore {
+  display: flex;
+}
+
+.getMore .getMore__img {
+  /*position: relative;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+
+.banner_house {
+  background: url(../img/video.jpg) no-repeat 0 0;
+  background-size: cover;
+  padding: 0;
+  text-align: center;
+}
+
+.getMore .button {
+  margin: 11rem 0 0;
+}
+
+.getMore .button a {
+  padding: 1rem 1.19rem;
+  top: 10rem;
+  left: 26.5rem;
+  display: inline-block;
+  background: rgba(0, 189, 189, 0.53);
+  border-radius: 55%;
+  color: #ffffff;
+  outline: none;
+  transition: .5s all;
+}
+
+.getMore .button a:hover {
+  transition: .5s all;
+}
+
+.getMore .button span {
+  font-size: 2.1875rem;
+  top: 2px;
+}
+
+.getMore__content {
+  padding: 0 5.5rem;
+  background: #00cdce;
+  flex: 1;
+}
+
+.getMore__content h2 {
+  text-align: center;
+  margin: 1em 0 .5em;
+  font-size: 42px;
+  color: #000;
+}
+
+.getMore__content .getMore__info p {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: #fff;
+  line-height: 2em;
+  font-weight: 400;
+  text-align: center;
+}
+
+.readMore-btn {
+  margin: 2rem 0 4rem;
+  text-align: center;
+}
+
+.readMore-btn a {
+  color: #00cdce;
+  font-size: 1rem;
+  background: #000;
+  text-decoration: none;
+  letter-spacing: 1px;
+  border: 1px solid #000;
+  padding: 0.5rem 1.1rem;
+  outline: none;
+  display: inline-block;
+}
+
+.readMore-btn a:hover {
+  color: #fff
 }
 

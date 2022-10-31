@@ -1,18 +1,8 @@
 /*! Magnific Popup - v1.1.0 - 2016-02-20
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2016 Dmitry Semenov; */
-;(function (factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['jquery'], factory);
-  } else if (typeof exports === 'object') {
-    // Node/CommonJS
-    factory(require('jquery'));
-  } else {
-    // Browser globals
-    factory(window.jQuery || window.Zepto);
-  }
-}(function ($) {
+
+;(function ($) {
 
   /*>>core*/
   /**
@@ -42,13 +32,13 @@
   /**
    * Private vars
    */
-  /*jshint -W079 */
   var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
     MagnificPopup = function () {
     },
     _isJQ = !!(window.jQuery),
     _prevStatus,
     _window = $(window),
+    _body,
     _document,
     _prevContentType,
     _wrapClasses,
@@ -98,7 +88,6 @@
     // Initialize Magnific Popup only when called at least once
     _checkInstance = function () {
       if (!$.magnificPopup.instance) {
-        /*jshint -W020 */
         mfp = new MagnificPopup();
         mfp.init();
         $.magnificPopup.instance = mfp;
@@ -136,7 +125,9 @@
      */
     init: function () {
       var appVersion = navigator.appVersion;
-      mfp.isLowIE = mfp.isIE8 = document.all && !document.addEventListener;
+      mfp.isIE7 = appVersion.indexOf("MSIE 7.") !== -1;
+      mfp.isIE8 = appVersion.indexOf("MSIE 8.") !== -1;
+      mfp.isLowIE = mfp.isIE7 || mfp.isIE8;
       mfp.isAndroid = (/android/gi).test(appVersion);
       mfp.isIOS = (/iphone|ipad|ipod/gi).test(appVersion);
       mfp.supportsTransition = supportsTransitions();
@@ -144,6 +135,7 @@
       // We disable fixed positioned lightbox on devices that don't handle it nicely.
       // If you know a better way of detecting this - let me know.
       mfp.probablyMobile = (mfp.isAndroid || mfp.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent));
+      _body = $(document.body);
       _document = $(document);
 
       mfp.popupsCache = {};
@@ -345,11 +337,13 @@
 
       _mfpTrigger('BuildControls');
 
+
       // remove scrollbar, add margin e.t.c
       $('html').css(windowStyles);
 
       // add everything to DOM
-      mfp.bgOverlay.add(mfp.wrap).prependTo(mfp.st.prependTo || $(document.body));
+      mfp.bgOverlay.add(mfp.wrap).prependTo(document.body);
+
 
       // Save last focused element
       mfp._lastFocusedEl = document.activeElement;
@@ -440,7 +434,7 @@
       }
 
 
-      if (mfp.st.autoFocusLast && mfp._lastFocusedEl) {
+      if (mfp._lastFocusedEl) {
         $(mfp._lastFocusedEl).focus(); // put tab focus back
       }
       mfp.currItem = null;
@@ -494,6 +488,7 @@
       // _mfpOn('BeforeChange', function(e, prevType, newType) { });
 
       mfp.currItem = item;
+
 
       if (!mfp.currTemplate[type]) {
         var markup = mfp.st[type] ? mfp.st[type].markup : false;
@@ -561,12 +556,11 @@
      */
     parseEl: function (index) {
       var item = mfp.items[index],
-        type;
+        type = item.type;
 
       if (item.tagName) {
         item = {el: $(item)};
       } else {
-        type = item.type;
         item = {data: item, src: item.src};
       }
 
@@ -630,7 +624,7 @@
       var midClick = options.midClick !== undefined ? options.midClick : $.magnificPopup.defaults.midClick;
 
 
-      if (!midClick && (e.which === 2 || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey)) {
+      if (!midClick && (e.which === 2 || e.ctrlKey || e.metaKey)) {
         return;
       }
 
@@ -656,6 +650,7 @@
           e.stopPropagation();
         }
       }
+
 
       options.el = $(e.mfpEl);
       if (options.delegate) {
@@ -784,7 +779,7 @@
               if (el.is('img')) {
                 el.attr('src', value);
               } else {
-                el.replaceWith($('<img>').attr('src', value).attr('class', el.attr('class')));
+                el.replaceWith('<img src="' + value + '" class="' + el.attr('class') + '" />');
               }
             } else {
               el.attr(arr[1], value);
@@ -801,6 +796,7 @@
       // thx David
       if (mfp.scrollbarSize === undefined) {
         var scrollDiv = document.createElement("div");
+        scrollDiv.id = "mfp-sbm";
         scrollDiv.style.cssText = 'width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;';
         document.body.appendChild(scrollDiv);
         mfp.scrollbarSize = scrollDiv.offsetWidth - scrollDiv.clientWidth;
@@ -828,6 +824,7 @@
       } else {
         options = $.extend(true, {}, options);
       }
+
 
       options.isObj = true;
       options.index = index || 0;
@@ -879,21 +876,17 @@
 
       removalDelay: 0,
 
-      prependTo: null,
-
       fixedContentPos: 'auto',
 
       fixedBgPos: 'auto',
 
       overflowY: 'auto',
 
-      closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
+      closeMarkup: '<button title="%title%" type="button" class="mfp-close">&times;</button>',
 
       tClose: 'Close (Esc)',
 
-      tLoading: 'Loading...',
-
-      autoFocusLast: true
+      tLoading: 'Loading...'
 
     }
   };
@@ -947,6 +940,26 @@
     }
     return jqEl;
   };
+
+
+//Quick benchmark
+  /*
+  var start = performance.now(),
+    i,
+    rounds = 1000;
+
+  for(i = 0; i < rounds; i++) {
+
+  }
+  console.log('Test #1:', performance.now() - start);
+
+  start = performance.now();
+  for(i = 0; i < rounds; i++) {
+
+  }
+  console.log('Test #2:', performance.now() - start);
+  */
+
 
   /*>>core*/
 
@@ -1025,7 +1038,7 @@
     _ajaxCur,
     _removeAjaxCursor = function () {
       if (_ajaxCur) {
-        $(document.body).removeClass(_ajaxCur);
+        _body.removeClass(_ajaxCur);
       }
     },
     _destroyAjaxRequest = function () {
@@ -1053,9 +1066,8 @@
       },
       getAjax: function (item) {
 
-        if (_ajaxCur) {
-          $(document.body).addClass(_ajaxCur);
-        }
+        if (_ajaxCur)
+          _body.addClass(_ajaxCur);
 
         mfp.updateStatus('loading');
 
@@ -1098,6 +1110,7 @@
       }
     }
   });
+
 
   /*>>ajax*/
 
@@ -1149,13 +1162,13 @@
 
         _mfpOn(OPEN_EVENT + ns, function () {
           if (mfp.currItem.type === 'image' && imgSt.cursor) {
-            $(document.body).addClass(imgSt.cursor);
+            _body.addClass(imgSt.cursor);
           }
         });
 
         _mfpOn(CLOSE_EVENT + ns, function () {
           if (imgSt.cursor) {
-            $(document.body).removeClass(imgSt.cursor);
+            _body.removeClass(imgSt.cursor);
           }
           _window.off('resize' + EVENT_NS);
         });
@@ -1292,9 +1305,6 @@
         if (el.length) {
           var img = document.createElement('img');
           img.className = 'mfp-img';
-          if (item.el && item.el.find('img').length) {
-            img.alt = item.el.find('img').attr('alt');
-          }
           item.img = $(img).on('load.mfploader', onLoadComplete).on('error.mfploader', onLoadError);
           img.src = item.src;
 
@@ -1303,12 +1313,8 @@
           if (el.is('img')) {
             item.img = item.img.clone();
           }
-
-          img = item.img[0];
-          if (img.naturalWidth > 0) {
+          if (item.img[0].naturalWidth > 0) {
             item.hasSize = true;
-          } else if (!img.width) {
-            item.hasSize = false;
           }
         }
 
@@ -1345,6 +1351,7 @@
       }
     }
   });
+
 
   /*>>image*/
 
@@ -1458,6 +1465,7 @@
               }
               animatedImg = getElToAnimate(image);
             }
+
 
             animatedImg.css(mfp._getOffset(true));
             mfp.wrap.append(animatedImg);
@@ -1676,7 +1684,8 @@
       initGallery: function () {
 
         var gSt = mfp.st.gallery,
-          ns = '.mfp-gallery';
+          ns = '.mfp-gallery',
+          supportsFastClick = Boolean($.fn.mfpFastClick);
 
         mfp.direction = true; // true - next, false - prev
 
@@ -1721,12 +1730,21 @@
               arrowLeft = mfp.arrowLeft = $(markup.replace(/%title%/gi, gSt.tPrev).replace(/%dir%/gi, 'left')).addClass(PREVENT_CLOSE_CLASS),
               arrowRight = mfp.arrowRight = $(markup.replace(/%title%/gi, gSt.tNext).replace(/%dir%/gi, 'right')).addClass(PREVENT_CLOSE_CLASS);
 
-            arrowLeft.click(function () {
+            var eName = supportsFastClick ? 'mfpFastClick' : 'click';
+            arrowLeft[eName](function () {
               mfp.prev();
             });
-            arrowRight.click(function () {
+            arrowRight[eName](function () {
               mfp.next();
             });
+
+            // Polyfill for :before and :after (adds elements with classes mfp-a and mfp-b)
+            if (mfp.isIE7) {
+              _getEl('b', arrowLeft[0], false, true);
+              _getEl('a', arrowLeft[0], false, true);
+              _getEl('b', arrowRight[0], false, true);
+              _getEl('a', arrowRight[0], false, true);
+            }
 
             mfp.container.append(arrowLeft.add(arrowRight));
           }
@@ -1745,6 +1763,10 @@
         _mfpOn(CLOSE_EVENT + ns, function () {
           _document.off(ns);
           mfp.wrap.off('click' + ns);
+
+          if (mfp.arrowLeft && supportsFastClick) {
+            mfp.arrowLeft.add(mfp.arrowRight).destroyMfpFastClick();
+          }
           mfp.arrowRight = mfp.arrowLeft = null;
         });
 
@@ -1807,6 +1829,58 @@
     }
   });
 
+  /*
+  Touch Support that might be implemented some day
+
+  addSwipeGesture: function() {
+    var startX,
+      moved,
+      multipleTouches;
+
+      return;
+
+    var namespace = '.mfp',
+      addEventNames = function(pref, down, move, up, cancel) {
+        mfp._tStart = pref + down + namespace;
+        mfp._tMove = pref + move + namespace;
+        mfp._tEnd = pref + up + namespace;
+        mfp._tCancel = pref + cancel + namespace;
+      };
+
+    if(window.navigator.msPointerEnabled) {
+      addEventNames('MSPointer', 'Down', 'Move', 'Up', 'Cancel');
+    } else if('ontouchstart' in window) {
+      addEventNames('touch', 'start', 'move', 'end', 'cancel');
+    } else {
+      return;
+    }
+    _window.on(mfp._tStart, function(e) {
+      var oE = e.originalEvent;
+      multipleTouches = moved = false;
+      startX = oE.pageX || oE.changedTouches[0].pageX;
+    }).on(mfp._tMove, function(e) {
+      if(e.originalEvent.touches.length > 1) {
+        multipleTouches = e.originalEvent.touches.length;
+      } else {
+        //e.preventDefault();
+        moved = true;
+      }
+    }).on(mfp._tEnd + ' ' + mfp._tCancel, function(e) {
+      if(moved && !multipleTouches) {
+        var oE = e.originalEvent,
+          diff = startX - (oE.pageX || oE.changedTouches[0].pageX);
+
+        if(diff > 20) {
+          mfp.next();
+        } else if(diff < -20) {
+          mfp.prev();
+        }
+      }
+    });
+  },
+  */
+
+
   /*>>gallery*/
 
   /*>>retina*/
@@ -1849,5 +1923,102 @@
   });
 
   /*>>retina*/
+
+  /*>>fastclick*/
+  /**
+   * FastClick event implementation. (removes 300ms delay on touch devices)
+   * Based on https://developers.google.com/mobile/articles/fast_buttons
+   *
+   * You may use it outside the Magnific Popup by calling just:
+   *
+   * $('.your-el').mfpFastClick(function() {
+   *     console.log('Clicked!');
+   * });
+   *
+   * To unbind:
+   * $('.your-el').destroyMfpFastClick();
+   *
+   *
+   * Note that it's a very basic and simple implementation, it blocks ghost click on the same element where it was bound.
+   * If you need something more advanced, use plugin by FT Labs https://github.com/ftlabs/fastclick
+   *
+   */
+
+  (function () {
+    var ghostClickDelay = 1000,
+      supportsTouch = 'ontouchstart' in window,
+      unbindTouchMove = function () {
+        _window.off('touchmove' + ns + ' touchend' + ns);
+      },
+      eName = 'mfpFastClick',
+      ns = '.' + eName;
+
+
+    // As Zepto.js doesn't have an easy way to add custom events (like jQuery), so we implement it in this way
+    $.fn.mfpFastClick = function (callback) {
+
+      return $(this).each(function () {
+
+        var elem = $(this),
+          lock;
+
+        if (supportsTouch) {
+
+          var timeout,
+            startX,
+            startY,
+            pointerMoved,
+            point,
+            numPointers;
+
+          elem.on('touchstart' + ns, function (e) {
+            pointerMoved = false;
+            numPointers = 1;
+
+            point = e.originalEvent ? e.originalEvent.touches[0] : e.touches[0];
+            startX = point.clientX;
+            startY = point.clientY;
+
+            _window.on('touchmove' + ns, function (e) {
+              point = e.originalEvent ? e.originalEvent.touches : e.touches;
+              numPointers = point.length;
+              point = point[0];
+              if (Math.abs(point.clientX - startX) > 10 ||
+                Math.abs(point.clientY - startY) > 10) {
+                pointerMoved = true;
+                unbindTouchMove();
+              }
+            }).on('touchend' + ns, function (e) {
+              unbindTouchMove();
+              if (pointerMoved || numPointers > 1) {
+                return;
+              }
+              lock = true;
+              e.preventDefault();
+              clearTimeout(timeout);
+              timeout = setTimeout(function () {
+                lock = false;
+              }, ghostClickDelay);
+              callback();
+            });
+          });
+
+        }
+
+        elem.on('click' + ns, function () {
+          if (!lock) {
+            callback();
+          }
+        });
+      });
+    };
+
+    $.fn.destroyMfpFastClick = function () {
+      $(this).off('touchstart' + ns + ' click' + ns);
+      if (supportsTouch) _window.off('touchmove' + ns + ' touchend' + ns);
+    };
+  })();
+
+  /*>>fastclick*/
   _checkInstance();
-}));
+})(window.jQuery || window.Zepto);

@@ -118,8 +118,41 @@
 </section>
 
 <!--STATS-->
-<section class="stats">
+<section class="stats section" id="stats">
+  <div class="container">
+    <h3 class="stats__title title_format">Stats</h3>
+    <div class="stats__content">
+      <div class="row">
+        <div class="col-md-3 stats__grid stats__clients">
+          <div class="stats__number counter">3500</div>
+          <div class="stats__info">
+            <h4>clients</h4>
+          </div>
+        </div>
 
+        <div class="col-md-3 stats__grid stats__plans">
+          <div class="stats__number counter">650</div>
+          <div class="stats__info">
+            <h4>Plans</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 stats__grid stats__projects">
+          <div class="stats__number counter">1021</div>
+          <div class="stats__info">
+            <h4>projects</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 stats__grid stats__likes">
+          <div class="stats__number counter">1010</div>
+          <div class="stats__info">
+            <h4>Likes</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!--BLOG-->
@@ -151,6 +184,15 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script>
   let swiper = new Swiper(".swiper", {});
+</script>
+
+<!-- Jquery Waypoint -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+
+<!-- CountUp JS -->
+<script src="./js/jquery.countup.js"></script>
+<script>
+  $('.counter').countUp();
 </script>
 </body>
 </html>

@@ -202,3 +202,32 @@ nav {
   line-height: 1.81rem;
   font-weight: 300;
 }
+
+
+/*STATS*/
+
+.stats {
+  background-color: #00cdce;
+}
+
+.stats .stats__grid {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.stats__content .counter {
+  font-size: 3.5rem;
+  margin: 0;
+  color: #fff;
+  letter-spacing: 5px;
+}
+
+.stats__info h4 {
+  font-size: 1.875rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+  margin-top: 5px;
+  color: #000;
+}
+
+

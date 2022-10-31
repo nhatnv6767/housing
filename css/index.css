@@ -462,3 +462,20 @@ button.close {
   border-radius: 0;
 }
 
+.portfolio__info__wrap {
+  opacity: 0;
+  font-size: 1rem;
+  padding: 1rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+}
+
+.portfolio__img .portfolio__info__wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

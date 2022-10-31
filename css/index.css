@@ -47,6 +47,11 @@ ul {
 }
 
 /*NAVIGATION BAR - HEADER*/
+.navbar {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+}
 
 h1 a.navbar-brand {
   font-size: 3.5rem;

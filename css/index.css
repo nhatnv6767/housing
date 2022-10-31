@@ -42,6 +42,10 @@ ul {
   padding: 0;
 }
 
+.section {
+  padding: 5rem 0;
+}
+
 /*NAVIGATION BAR - HEADER*/
 
 h1 a.navbar-brand {
@@ -176,6 +180,10 @@ nav {
   margin-top: 0.8em;
 }
 
+.about .about__content {
+  text-align: center;
+}
+
 
 .about .about_us h4 {
   color: #00cdce;
@@ -189,4 +197,8 @@ nav {
 .about .about_us p {
   margin: 5px 0 0;
   color: #000;
+  font-size: 0.94rem;
+  text-align: center;
+  line-height: 1.81rem;
+  font-weight: 300;
 }

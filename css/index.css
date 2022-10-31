@@ -46,10 +46,6 @@ ul {
   padding: 5rem 0;
 }
 
-.section__bottom {
-  padding-bottom: 5rem;
-}
-
 /*NAVIGATION BAR - HEADER*/
 
 h1 a.navbar-brand {
@@ -428,5 +424,36 @@ button.close {
 
 .readMore-btn a:hover {
   color: #fff
+}
+
+/*PORTFOLIO*/
+
+.portfolio .portfolio__img {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  position: relative;
+  display: block;
+}
+
+.portfolio .portfolio__content-second {
+  margin-top: 1rem;
+}
+
+
+.portfolio .portfolio__img:hover .portfolio__info__wrap {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  height: 100%;
+  transition: all .5s;
+  transform: scale(1, 1) perspective(400px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.portfolio .portfolio__img img {
+  transition: border-radius 400ms ease 0s;
+  transform-origin: center center;
+  border-radius: 0;
 }
 

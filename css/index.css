@@ -601,3 +601,45 @@ button.close {
   font-size: 1rem;
   margin: 0;
 }
+
+.teams .teams_description ul {
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.teams .teams_description ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.teams .teams_description ul li a {
+  color: #333;
+  text-align: center;
+}
+
+.teams .teams_description ul li a i {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  border: solid 2px #fff;
+  background: none;
+  color: #fff;
+  transition: all .5s;
+}
+
+
+.teams .teams_description ul .fa-facebook-f:hover {
+  background: #3b5998;
+}
+
+.teams .teams_description ul .fa-twitter:hover {
+  background: #55acee;
+}
+
+.teams .teams_description ul .fa-rss:hover {
+  background: #f26522;
+}
+
+.teams__info:hover .teams_description h4 {
+  color: #fff;
+}

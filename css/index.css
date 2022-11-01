@@ -493,3 +493,19 @@ button.close {
   text-align: center;
   border-radius: 0;
 }
+
+.portfolio__info p {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.portfolio__info h3 {
+  font-size: 1.5rem;
+  color: #00cdce;
+  text-transform: uppercase;
+  padding: 1.3rem 0;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  margin-bottom: 0.8rem;
+}
+

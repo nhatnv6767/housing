@@ -810,3 +810,14 @@ footer {
   background: url("../img/arrowup.png") no-repeat 0 0;
 }
 
+#toTopHover {
+  width: 4rem;
+  height: 4rem;
+  display: block;
+  overflow: hidden;
+  float: right;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+

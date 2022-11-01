@@ -35,6 +35,9 @@
 
   <!--  Lightbox style-->
   <link rel="stylesheet" href="css/lsb.css">
+
+  <!--  responsiveslides.css-->
+  <link rel="stylesheet" href="./css/responsiveslides.css">
   <!--  MAIN CSS-->
   <link rel="stylesheet" href="./css/index.css">
   <title>Housing a Real Estate Category Bootstrap Responsive website Template | Home :: w3layouts</title>
@@ -76,22 +79,8 @@
 </header>
 
 <!--CAROUSEL-->
-<section class="carousel swiper">
-  <!--  <div class="swiper-wrapper">-->
-  <!--    &lt;!&ndash; Slides &ndash;&gt;-->
-  <!--    <div class="swiper-slide">Slide 1</div>-->
-  <!--    <div class="swiper-slide">Slide 2</div>-->
-  <!--    <div class="swiper-slide">Slide 3</div>-->
-  <!--  </div>-->
-  <!--  &lt;!&ndash; If we need pagination &ndash;&gt;-->
-  <!--  <div class="swiper-pagination"></div>-->
-
-  <!--  &lt;!&ndash; If we need navigation buttons &ndash;&gt;-->
-  <!--  <div class="swiper-button-prev"></div>-->
-  <!--  <div class="swiper-button-next"></div>-->
-
-  <!--  &lt;!&ndash; If we need scrollbar &ndash;&gt;-->
-  <!--  <div class="swiper-scrollbar"></div>-->
+<section class="carousel slider">
+  
 </section>
 
 <!--ABOUT-->
@@ -560,10 +549,13 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
 
-<!--Swiperjs-->
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!--responsiveslides.js-->
+
+<script src="js/responsiveslides.js"></script>
 <script>
-  let swiper = new Swiper(".swiper", {});
+  $(function () {
+    $(".rslides").responsiveSlides();
+  });
 </script>
 
 <!-- Jquery Waypoint counting-->
@@ -602,33 +594,28 @@
 </script>
 
 <!--SCROLL TO TOP-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+
 <script type="text/javascript">
   jQuery(document).ready(function ($) {
     $(".scroll").click(function (event) {
       event.preventDefault();
-      $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+      $('html,body').animate({scrollTop: $(this.hash).offset().top}, 500);
     });
   });
 </script>
-<!-- start-smoth-scrolling -->
 
-<!-- for-bottom-to-top smooth scrolling -->
 <script type="text/javascript">
   $(document).ready(function () {
-    /*
-        var defaults = {
-        containerID: 'toTop', // fading element id
-        containerHoverID: 'toTopHover', // fading element hover id
-        scrollSpeed: 1200,
-        easingType: 'linear'
-        };
-    */
     $().UItoTop({easingType: 'easeOutQuart'});
   });
 </script>
 
-<a href="#" id="toTop" style="display:block;"><span id="toTopHover" style="opacity:1"> </span></a>
+<a href="#" id="toTop" style="display:block;" class="cd-top text-replace js-cd-top">
+  <span id="toTopHover"
+        style="opacity:1"> </span>
+</a>
 </body>
 </html>

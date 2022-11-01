@@ -221,14 +221,17 @@ nav {
   transform: translate(-50%, -50%)
 }
 
-.swiper-slide img {
-  transform: scale(1.1);
-  /*transition: -webkit-filter 200ms linear;*/
-  transition-delay: 2s;
+.swiper-slide {
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
-.swiper-slide-active img {
-  -webkit-transition: opacity 1000ms ease-in-out !important;
+
+.swiper-pagination {
+  letter-spacing: 15px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 5px 10px;
 }
 
 

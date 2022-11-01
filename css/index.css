@@ -567,3 +567,37 @@ button.close {
   background-color: #dfdfdf;
   outline: none;
 }
+
+
+/*TEAM*/
+
+.teams .teams__info {
+  overflow: hidden;
+}
+
+.teams .teams__info img {
+  width: 100%;
+}
+
+.teams .teams_description {
+  background: rgba(0, 0, 0, 0.79);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  width: 100%;
+  transition: all .5s;
+}
+
+.teams .teams_description h4 {
+  color: #00cdce;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin: 0 0 5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.teams .teams_description p {
+  color: #ffffff;
+  font-size: 1rem;
+  margin: 0;
+}

@@ -79,45 +79,46 @@
 </header>
 
 <!--CAROUSEL-->
-<section class="cyberCarousel slider" id="home">
-  <div class="callbacks_container w3l">
-    <ul class="rslides" id="slider">
-      <li>
-        <div class="slider-img first-img">
+<section class="slider">
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="./img/b1.jpg" alt="banner1">
+        <div class="carousel-caption">
+          <h4>Lorem ipsum dolor sit.</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         </div>
-        <div class="slider-info">
-          <h4>Lorem ipsum amet</h4>
-          <p>Lorem ipsum dolor sit, consectetur adiping elit.</p>
+      </div>
 
+      <div class="swiper-slide">
+        <img src="./img/b2.jpg" alt="banner1">
+        <div class="carousel-caption">
+          <h4>Lorem ipsum dolor sit.</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         </div>
-      </li>
-      <li>
-        <div class="slider-img second-img">
-        </div>
-        <div class="slider-info">
-          <h4>Dolor sit hatant morbi </h4>
-          <p>Quis autem vel eum iure reprehenderit quivol.</p>
-        </div>
-      </li>
-      <li>
-        <div class="slider-img third-img">
-        </div>
-        <div class="slider-info">
-          <h4>Quis autem ve eum iure</h4>
-          <p>Excepteur sint ocecat cupid proident, deserunt.</p>
-        </div>
-      </li>
-      <li>
-        <div class="slider-img four-img">
-        </div>
-        <div class="slider-info">
-          <h4>Voluptate velit esse</h4>
-          <p>Quis autem velreprehenderit qui ea.eum iure</p>
-        </div>
-      </li>
+      </div>
 
-    </ul>
+      <div class="swiper-slide">
+        <img src="./img/b3.jpg" alt="banner1">
+        <div class="carousel-caption">
+          <h4>Lorem ipsum dolor sit.</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
 
+      <div class="swiper-slide">
+        <img src="./img/b4.jpg" alt="banner1">
+        <div class="carousel-caption">
+          <h4>Lorem ipsum dolor sit.</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 
@@ -587,24 +588,28 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
 
-<!--responsiveslides.js-->
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-<script src="js/responsiveslides.js"></script>
+<!-- Initialize Swiper -->
 <script>
-  $(function () {
-    $("#slider").responsiveSlides({
-      auto: true,
-      pager: true,
-      nav: true,
-      speed: 1000,
-      namespace: "callbacks",
-      before: function () {
-        $('.events').append("<li>before event fired.</li>");
-      },
-      after: function () {
-        $('.events').append("<li>after event fired.</li>");
-      }
-    });
+  var swiper = new Swiper(".mySwiper", {
+    // cssMode: true,
+    effect: "fade",
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    mousewheel: false,
+    keyboard: false,
   });
 </script>
 

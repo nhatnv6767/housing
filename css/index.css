@@ -718,3 +718,79 @@ button.close {
 .contacts input[type="email"]:focus {
   border-color: #000;
 }
+
+
+/*FOOTER*/
+
+footer {
+  background: #00cdce;
+}
+
+.footer__following, .copyright {
+  text-align: center;
+}
+
+.footer__following ul {
+  list-style: none;
+}
+
+.copyright {
+  margin-top: 1.2rem;
+}
+
+.copyright p {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.copyright p a {
+  color: red;
+  transition: all .5s;
+}
+
+.copyright p a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.following-items {
+  text-align: center;
+}
+
+.following-items ul li {
+  display: inline-block;
+}
+
+.following-items ul li a {
+  color: #fff;
+}
+
+
+.following-items ul li a i {
+  margin: 0.5rem;
+  font-size: 1.19rem;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #fff;
+  transition: all .5s;
+}
+
+.following-items ul li a .fa-facebook-f:hover {
+  color: #3b5998;
+}
+
+.following-items ul li a .fa-twitter:hover {
+  color: #55acee;
+}
+
+.following-items ul li a .fa-rss:hover {
+  color: #f26522;
+}
+
+.following-items ul li a .fa-vk:hover {
+  color: #45668e;
+}
+
+
+

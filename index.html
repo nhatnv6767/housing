@@ -596,9 +596,14 @@
   var swiper = new Swiper(".mySwiper", {
     // cssMode: true,
     effect: "fade",
-    spaceBetween: 100,
+    fadeEffect: {
+      // flash effect
+      crossFade: true
+    },
+    speed: 1300,
+    // spaceBetween: 100,
     autoplay: {
-      delay: 2500,
+      delay: 4500,
       disableOnInteraction: false,
     },
     navigation: {
